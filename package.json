@@ -1,6 +1,6 @@
 {
-  "name": "graphs",
-  "version": "1.0.0",
+  "name": "graph-ssu",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "start": "tsc-watch --onSuccess \"node ./dist/index\""
@@ -9,8 +9,5 @@
     "@types/node": "^14.10.0",
     "tsc-watch": "^4.2.9",
     "typescript": "^4.0.2"
-  },
-  "dependencies": {
-    "readline-sync": "^1.4.10"
   }
 }

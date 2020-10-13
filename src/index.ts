@@ -1,5 +1,21 @@
-import {Graph} from './graph'
+import { Graph } from './graph'
 
-const graph = new Graph()
+const main = (): void => {
+  // const G1 = new Graph({})
+  // console.log(G1.graph)
 
-graph.readFromFile()
+  const G2 = new Graph({filename: 'graph.txt'})
+  // console.log(G2.graph)
+  G2.save('graph.txt')
+  G2.removeVertex(2)
+  G2.save('graph.txt')
+  // console.log(G2.graph)
+
+  // const G3 = new Graph(G1)
+  // console.log(G3.graph)
+
+  // const G4 = new Graph({ n: 3, m: 3, oriented: true })
+  // console.log(G4.graph)
+}
+
+main()
