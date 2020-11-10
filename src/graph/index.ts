@@ -171,10 +171,43 @@ export class Graph {
     )
   }
 
+
+  // Вывести все вершины орграфа, смежные с данной.
+  public adjacentVertices(vertex: number): number[] {
+    const vertices: number[] = []
+    vertices.push(...this.outgoingVertices(vertex))
+
+    this.graph.map((graph: IGraph) => {
+      graph.edges.map((edge: Edge) => {
+        if(edge.to === vertex && !vertices.includes(graph.vertex.ID)) {
+          vertices.push(graph.vertex.ID)
+        }
+      })
+    })
+
+    return vertices
+  }
+
+  // Для данной вершины орграфа вывести все «выходящие» соседние вершины.
+  public outgoingVertices(vertex: number): number[] {
+    const graph: IGraph[] = this.graph.filter((graph: IGraph) => {
+      return graph.vertex.ID === vertex
+    })
+    let outgoingVertex: number[] = []
+    if(graph.length !== 0) {
+      graph.map((graph: IGraph) => {
+        graph.edges.map((edge: Edge) => {
+          outgoingVertex.push(edge.to)
+        })
+      })
+    }
+    return outgoingVertex
+  }
+
   // Чтение графа
   public readFromFile(filename: string = 'graph.txt'): void {
     // Считываем граф построчно и конвертируем в массив
-    const lines: string[] = fs.readFileSync(`./input/${filename}`, 'utf-8').split('\r\n')
+    const lines: string[] = fs.readFileSync(`./input/${filename}`, 'utf-8').split('\n')
     const items: string[][] = lines.map((line: string) => line.split(' '))
     items.map((item: string[]) => {
       // Добавляем ребро
